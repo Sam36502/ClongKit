@@ -1,0 +1,131 @@
+{
+    "phono": {
+        "phonemes": [
+            {
+                "ipa": "ɣ",
+                "rom": "gh",
+                "grp": "C"
+            },
+            {
+                "ipa": "d",
+                "rom": "d",
+                "grp": "C"
+            },
+            {
+                "ipa": "ŋ",
+                "rom": "ng",
+                "grp": "C"
+            },
+            {
+                "ipa": "ʁ",
+                "rom": "r",
+                "grp": "C"
+            },
+            {
+                "ipa": "e",
+                "rom": "e",
+                "grp": "V"
+            },
+            {
+                "ipa": "a",
+                "rom": "a",
+                "grp": "V"
+            }
+        ]
+    },
+    "lex": {
+        "words": [
+            {
+                "sounds": [
+                    {
+                        "ipa": "d",
+                        "rom": "d",
+                        "grp": "C"
+                    },
+                    {
+                        "ipa": "a",
+                        "rom": "a",
+                        "grp": "V"
+                    },
+                    {
+                        "ipa": "ŋ",
+                        "rom": "ng",
+                        "grp": "C"
+                    }
+                ],
+                "meanings": [
+                    "great",
+                    "large",
+                    "epic",
+                    "huge"
+                ],
+                "pos": "",
+                "etym": ""
+            },
+            {
+                "sounds": [
+                    {
+                        "ipa": "ɣ",
+                        "rom": "gh",
+                        "grp": "C"
+                    },
+                    {
+                        "ipa": "e",
+                        "rom": "e",
+                        "grp": "V"
+                    },
+                    {
+                        "ipa": "ʁ",
+                        "rom": "r",
+                        "grp": "C"
+                    }
+                ],
+                "meanings": [
+                    "warrior",
+                    "leader",
+                    "fighter",
+                    "master"
+                ],
+                "pos": "",
+                "etym": ""
+            },
+            {
+                "sounds": [
+                    {
+                        "ipa": "ɣ",
+                        "rom": "gh",
+                        "grp": "C"
+                    },
+                    {
+                        "ipa": "e",
+                        "rom": "e",
+                        "grp": "V"
+                    },
+                    {
+                        "ipa": "ʁ",
+                        "rom": "r",
+                        "grp": "C"
+                    },
+                    {
+                        "ipa": "d",
+                        "rom": "d",
+                        "grp": "C"
+                    },
+                    {
+                        "ipa": "a",
+                        "rom": "a",
+                        "grp": "V"
+                    },
+                    {
+                        "ipa": "ŋ",
+                        "rom": "ng",
+                        "grp": "C"
+                    }
+                ],
+                "meanings": null,
+                "pos": "",
+                "etym": ""
+            }
+        ]
+    }
+}

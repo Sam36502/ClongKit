@@ -1,0 +1,38 @@
+package storage
+
+import "github.com/Sam36502/ClongKit/internal/lang"
+
+type JSONLanguage struct {
+	Phonology JSONPhonology `json:"phonology"`
+	Lexicon   JSONLexicon   `json:"lexicon"`
+}
+
+type JSONPhonology struct {
+	Phonemes []JSONPhoneme `json:"phonemes"`
+}
+
+type JSONPhoneme struct {
+	IPA          string `json:"ipa"`
+	Romanisation string `json:"rom"`
+	GroupID      string `json:"grp"`
+}
+
+type JSONLexicon struct {
+	Words []JSONWord `json:"words"`
+}
+
+type JSONWord struct {
+	Romanisation string   `json:"rom"`
+	Meanings     []string `json:"mns"`
+	Etymology    string   `json:"ety"`
+	Tags         []string `json:"tgs"`
+}
+
+func (jl *JSONLanguage) ToLanguage() lang.Language {
+	l := lang.Language{
+		Phonology: lang.Phonology{
+			Phonemes: []lang.Phoneme(jl.Phonology.Phonemes),
+		},
+	}
+	return l
+}
