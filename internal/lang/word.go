@@ -29,18 +29,17 @@ func (lang *Language) ParseWord(romanisation string) (*Word, error) {
 	return &newWord, nil
 }
 
+// Takes a romanisation and parses out the first letter it finds
+// Returns the phoneme, the shortened string and a possible error
 func (lang *Language) parseOutFirstLetter(romanisation string) (*Phoneme, string, error) {
-	for l := range romanisation {
-		letter := ""
-		sub := romanisation[l:]
-		for i, r := range sub {
-			letter = fmt.Sprint(letter, string(r))
-			p, err := lang.ParsePhoneme(letter)
-			if err == nil {
-				return p, romanisation[l+i+1:], nil
-			}
+
+	for i := len(romanisation); i >= 0; i-- {
+		p, err := lang.ParsePhoneme(romanisation[:i])
+		if err == nil {
+			return p, romanisation[i:], nil
 		}
 	}
+
 	return nil, romanisation, errors.New(fmt.Sprintf("No letter found within word string '%s'", romanisation))
 }
 
@@ -48,7 +47,7 @@ func (lang *Language) parseOutFirstLetter(romanisation string) (*Phoneme, string
 // associated with that letter
 func (lang *Language) ParsePhoneme(letter string) (*Phoneme, error) {
 	for _, p := range lang.Phonology.Phonemes {
-		if strings.ToLower(p.Romanisation) == strings.ToLower(letter) {
+		if strings.Compare(strings.ToLower(p.Romanisation), strings.ToLower(letter)) == 0 {
 			return &p, nil
 		}
 	}

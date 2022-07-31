@@ -41,7 +41,7 @@ to improve the chance of finding it when searching the dictionry.`,
 			return
 		}
 
-		// Add meanings
+		// Add Meanings
 		means := cmd.Flag(common.MeaningListFlag)
 		if means.Changed {
 			word.Meanings = strings.Split(means.Value.String(), common.ListSeparator)
@@ -50,7 +50,21 @@ to improve the chance of finding it when searching the dictionry.`,
 			}
 		}
 
-		// TODO: Look into custom JSON (un)marshaler (Less redundant info)
+		// Add Tags
+		tags := cmd.Flag(common.TagListFlag)
+		if tags.Changed {
+			word.Tags = strings.Split(tags.Value.String(), common.ListSeparator)
+			for i, m := range word.Tags {
+				word.Tags[i] = strings.TrimSpace(m)
+			}
+		}
+
+		// Add Etymology
+		etym := cmd.Flag(common.EtymologyFlag)
+		if etym.Changed {
+			word.Etymology = strings.TrimSpace(etym.Value.String())
+		}
+
 		lang.SetWord(*word)
 
 		// Save changes to file
@@ -64,5 +78,7 @@ to improve the chance of finding it when searching the dictionry.`,
 
 func init() {
 	// Set Flags:
-	setCmd.Flags().StringP(common.MeaningListFlag, "m", "", "List of meanings; what the word means in your mother-tongue.")
+	setCmd.Flags().StringP(common.MeaningListFlag, "m", "", "List of meanings; what the word means in your mother-tongue. (comma separated)")
+	setCmd.Flags().StringP(common.TagListFlag, "t", "", "List of grammatical classifiers e.g. 'n' (noun) 'pl' (plural)  (comma separated)")
+	setCmd.Flags().StringP(common.EtymologyFlag, "e", "", "Word etymology. No specified format, but word romanisations are recommended")
 }

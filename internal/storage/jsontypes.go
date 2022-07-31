@@ -1,6 +1,8 @@
 package storage
 
-import "github.com/Sam36502/ClongKit/internal/lang"
+import (
+	"github.com/Sam36502/ClongKit/internal/lang"
+)
 
 type JSONLanguage struct {
 	Phonology JSONPhonology `json:"phonology"`
@@ -28,7 +30,7 @@ type JSONWord struct {
 	Tags         []string `json:"tgs"`
 }
 
-func (jl *JSONLanguage) ToLanguage() (*lang.Language, error) {
+func JSONToLanguage(jl *JSONLanguage) (*lang.Language, error) {
 	l := lang.Language{
 		Phonology: lang.Phonology{
 			Phonemes: make([]lang.Phoneme, len(jl.Phonology.Phonemes)),
@@ -53,4 +55,27 @@ func (jl *JSONLanguage) ToLanguage() (*lang.Language, error) {
 		}
 	}
 	return &l, nil
+}
+
+func LanguageToJSON(l *lang.Language) (*JSONLanguage, error) {
+	jl := JSONLanguage{
+		Phonology: JSONPhonology{
+			Phonemes: make([]JSONPhoneme, len(l.Phonology.Phonemes)),
+		},
+		Lexicon: JSONLexicon{
+			Words: make([]JSONWord, len(l.Lexicon.Words)),
+		},
+	}
+	for i, p := range l.Phonology.Phonemes {
+		jl.Phonology.Phonemes[i] = JSONPhoneme(p)
+	}
+	for i, w := range l.Lexicon.Words {
+		jl.Lexicon.Words[i] = JSONWord{
+			Romanisation: w.GetRomanisation(),
+			Meanings:     w.Meanings,
+			Etymology:    w.Etymology,
+			Tags:         w.Tags,
+		}
+	}
+	return &jl, nil
 }

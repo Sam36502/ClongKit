@@ -1,5 +1,5 @@
 {
-    "phono": {
+    "phonology": {
         "phonemes": [
             {
                 "ipa": "ɣ",
@@ -33,98 +33,31 @@
             }
         ]
     },
-    "lex": {
+    "lexicon": {
         "words": [
             {
-                "sounds": [
-                    {
-                        "ipa": "d",
-                        "rom": "d",
-                        "grp": "C"
-                    },
-                    {
-                        "ipa": "a",
-                        "rom": "a",
-                        "grp": "V"
-                    },
-                    {
-                        "ipa": "ŋ",
-                        "rom": "ng",
-                        "grp": "C"
-                    }
-                ],
-                "meanings": [
-                    "great",
-                    "large",
-                    "epic",
-                    "huge"
-                ],
-                "pos": "",
-                "etym": ""
-            },
-            {
-                "sounds": [
-                    {
-                        "ipa": "ɣ",
-                        "rom": "gh",
-                        "grp": "C"
-                    },
-                    {
-                        "ipa": "e",
-                        "rom": "e",
-                        "grp": "V"
-                    },
-                    {
-                        "ipa": "ʁ",
-                        "rom": "r",
-                        "grp": "C"
-                    }
-                ],
-                "meanings": [
+                "rom": "gher",
+                "mns": [
                     "warrior",
-                    "leader",
                     "fighter",
-                    "master"
+                    "leader",
+                    "ruler"
                 ],
-                "pos": "",
-                "etym": ""
+                "ety": "",
+                "tgs": null
             },
             {
-                "sounds": [
-                    {
-                        "ipa": "ɣ",
-                        "rom": "gh",
-                        "grp": "C"
-                    },
-                    {
-                        "ipa": "e",
-                        "rom": "e",
-                        "grp": "V"
-                    },
-                    {
-                        "ipa": "ʁ",
-                        "rom": "r",
-                        "grp": "C"
-                    },
-                    {
-                        "ipa": "d",
-                        "rom": "d",
-                        "grp": "C"
-                    },
-                    {
-                        "ipa": "a",
-                        "rom": "a",
-                        "grp": "V"
-                    },
-                    {
-                        "ipa": "ŋ",
-                        "rom": "ng",
-                        "grp": "C"
-                    }
+                "rom": "dang",
+                "mns": [
+                    "great",
+                    "almighty",
+                    "powerful"
                 ],
-                "meanings": null,
-                "pos": "",
-                "etym": ""
+                "ety": "PG:diangu",
+                "tgs": [
+                    "a",
+                    "pos"
+                ]
             }
         ]
     }

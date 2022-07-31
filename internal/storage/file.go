@@ -28,7 +28,7 @@ func LoadLanguage(filename string) (*lang.Language, error) {
 		return nil, err
 	}
 
-	return jsonLang.ToLanguage()
+	return JSONToLanguage(&jsonLang)
 }
 
 func SaveLanguage(l *lang.Language, filename string, pretty bool) error {
@@ -36,10 +36,15 @@ func SaveLanguage(l *lang.Language, filename string, pretty bool) error {
 	// Marshal data
 	var data []byte
 	var err error
+	jsonLang, err := LanguageToJSON(l)
+	if err != nil {
+		return err
+	}
+
 	if pretty {
-		data, err = json.MarshalIndent(l, "", JSONFileIndentation)
+		data, err = json.MarshalIndent(jsonLang, "", JSONFileIndentation)
 	} else {
-		data, err = json.Marshal(l)
+		data, err = json.Marshal(jsonLang)
 	}
 
 	if err != nil {
@@ -52,6 +57,5 @@ func SaveLanguage(l *lang.Language, filename string, pretty bool) error {
 		return err
 	}
 
-	// TODO: Convert to JSONlang before saving
 	return nil
 }

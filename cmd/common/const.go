@@ -10,4 +10,6 @@ const (
 	LangFileFlag    = "lang-file"
 	PrettyFileFlag  = "pretty"
 	MeaningListFlag = "meanings"
+	EtymologyFlag   = "etymology"
+	TagListFlag     = "tags"
 )
