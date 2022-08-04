@@ -7,9 +7,10 @@ const (
 
 // Flag Names
 const (
-	LangFileFlag    = "lang-file"
-	IndentFlag      = "indent"
-	MeaningListFlag = "meanings"
-	EtymologyFlag   = "etymology"
-	TagListFlag     = "tags"
+	LangFileFlag     = "lang-file"
+	IndentFlag       = "indent"
+	RomanisationFlag = "romanisation"
+	MeaningListFlag  = "meanings"
+	EtymologyFlag    = "etymology"
+	TagListFlag      = "tags"
 )

@@ -7,6 +7,7 @@ import (
 
 	"github.com/Sam36502/ClongKit/model"
 	"github.com/Sam36502/ClongKit/presentor/lang"
+	"github.com/lithammer/fuzzysearch/fuzzy"
 )
 
 var _ model.LangStorage = (*JSONFileLangStorage)(nil)
@@ -68,8 +69,113 @@ func (fls *JSONFileLangStorage) GetAllWords() ([]lang.Word, error) {
 	return wrds, nil
 }
 
-func (fls *JSONFileLangStorage) SearchWord(rom, pron, etym, means, tags string) ([]lang.Word, error) {
-	return nil, nil
+func (fls *JSONFileLangStorage) SearchWord(rom, etym string, means, tags []string) ([]lang.Word, error) {
+	words := fls.lang.Lexicon.Words
+	filtered := false
+
+	if rom != "" {
+		i := 0
+		for _, w := range words {
+			if fuzzy.Match(rom, w.Romanisation) {
+				words[i] = w
+				i++
+			}
+
+		}
+		filtered = true
+
+		// Empty rest of array
+		for j := i; j < len(words); j++ {
+			words[j] = Word{}
+		}
+		words = words[:i]
+	}
+
+	if etym != "" {
+		i := 0
+		for _, w := range words {
+			if fuzzy.Match(etym, w.Etymology) {
+				words[i] = w
+				i++
+			}
+		}
+		filtered = true
+
+		// Empty rest of array
+		for j := i; j < len(words); j++ {
+			words[j] = Word{}
+		}
+		words = words[:i]
+	}
+
+	if len(means) > 0 {
+		i := 0
+		for _, w := range words {
+			for _, wm := range w.Meanings {
+				matched := false
+				for _, im := range means {
+					if fuzzy.Match(im, wm) {
+						words[i] = w
+						i++
+						matched = true
+						break
+					}
+					if matched {
+						break
+					}
+				}
+			}
+		}
+		filtered = true
+
+		// Empty rest of array
+		for j := i; j < len(words); j++ {
+			words[j] = Word{}
+		}
+		words = words[:i]
+	}
+
+	if len(tags) > 0 {
+		i := 0
+		for _, w := range words {
+			for _, wt := range w.Tags {
+				matched := false
+				for _, it := range tags {
+					if strings.Compare(strings.ToLower(wt), strings.ToLower(it)) == 0 {
+						words[i] = w
+						i++
+						matched = true
+						break
+					}
+				}
+				if matched {
+					break
+				}
+			}
+		}
+		filtered = true
+
+		// Empty rest of array
+		for j := i; j < len(words); j++ {
+			words[j] = Word{}
+		}
+		words = words[:i]
+	}
+
+	if !filtered {
+		return nil, nil
+	}
+
+	lwords := make([]lang.Word, len(words))
+	for i, w := range words {
+		lw, err := w.toLang(&fls.lang.Phonology)
+		if err != nil {
+			return nil, err
+		}
+		lwords[i] = *lw
+	}
+
+	return lwords, nil
 }
 
 func (fls *JSONFileLangStorage) DelWord(rom string) error {

@@ -8,7 +8,7 @@ type LangStorage interface {
 	SetWord(wrd lang.Word) error
 	GetWord(rom string) (*lang.Word, error)
 	GetAllWords() ([]lang.Word, error)
-	SearchWord(rom, pron, etym, means, tags string) ([]lang.Word, error)
+	SearchWord(rom, etym string, means, tags []string) ([]lang.Word, error)
 	DelWord(rom string) error
 
 	// Misc Methods

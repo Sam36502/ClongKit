@@ -27,15 +27,45 @@ will return one result with all the information it has.`,
 			return
 		}
 
-		wrds, err := langstore.GetAllWords()
+		// Get Search Params
+		rom := ""
+		romFlg := cmd.Flag(common.RomanisationFlag)
+		if romFlg != nil && romFlg.Changed {
+			rom = romFlg.Value.String()
+		}
+
+		etym := ""
+		etymFlg := cmd.Flag(common.EtymologyFlag)
+		if etymFlg != nil && etymFlg.Changed {
+			etym = etymFlg.Value.String()
+		}
+
+		means := []string{}
+		meansFlg := cmd.Flag(common.MeaningListFlag)
+		if meansFlg != nil && meansFlg.Changed {
+			means = strings.Split(meansFlg.Value.String(), common.ListSeparator)
+		}
+
+		tags := []string{}
+		tagsFlg := cmd.Flag(common.TagListFlag)
+		if tagsFlg != nil && tagsFlg.Changed {
+			tags = strings.Split(tagsFlg.Value.String(), common.ListSeparator)
+		}
+
+		wrds, err := langstore.SearchWord(rom, etym, means, tags)
 		if err != nil {
-			fmt.Printf("Failed to fetch all words:\n%s\n", err.Error())
+			fmt.Printf("Failed to search words:\n%s\n", err.Error())
 			return
+		}
+		if len(wrds) == 0 {
+			fmt.Println("No Words found")
 		}
 		for _, w := range wrds {
 			fmt.Println("Word:", w.GetRomanisation())
-			fmt.Println("Pronunciation:", w.GetPronunciation())
+			fmt.Printf("Pronunciation: /%s/\n", w.GetPronunciation())
+			fmt.Println("Etymology:", w.Etymology)
 			fmt.Println("Meanings:", strings.Join(w.Meanings, ", "))
+			fmt.Println("Tags:", strings.Join(w.Tags, ", "))
 			fmt.Print("\n")
 		}
 	},
@@ -43,4 +73,8 @@ will return one result with all the information it has.`,
 
 func init() {
 	// Search Flags:
+	searchCmd.Flags().StringP(common.RomanisationFlag, "r", "", "The romanisation to search by (fuzzy)")
+	searchCmd.Flags().StringP(common.EtymologyFlag, "e", "", "The etymology to search by (fuzzy)")
+	searchCmd.Flags().StringP(common.MeaningListFlag, "m", "", "The meanings to search by (fuzzy)")
+	searchCmd.Flags().StringP(common.TagListFlag, "t", "", "The tags to search by (exact)")
 }
