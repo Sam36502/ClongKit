@@ -74,7 +74,7 @@ to improve the chance of finding it when searching the dictionry.`,
 		// Save changes to file
 		err = langstore.Close()
 		if err != nil {
-			fmt.Printf("Failed to close language storage: %s\n", err.Error())
+			fmt.Println("Failed to close language storage:", err)
 			return
 		}
 	},

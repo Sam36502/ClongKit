@@ -179,6 +179,11 @@ func (fls *JSONFileLangStorage) SearchWord(rom, etym string, means, tags []strin
 }
 
 func (fls *JSONFileLangStorage) DelWord(rom string) error {
+	_, ind, err := fls.getWordIndex(rom)
+	if err != nil {
+		return err
+	}
+	fls.lang.Lexicon.Words = append(fls.lang.Lexicon.Words[:ind], fls.lang.Lexicon.Words[ind+1:]...)
 	return nil
 }
 
