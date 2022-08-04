@@ -13,4 +13,5 @@ const (
 	MeaningListFlag  = "meanings"
 	EtymologyFlag    = "etymology"
 	TagListFlag      = "tags"
+	ConfirmFlag      = "yes"
 )
