@@ -7,11 +7,13 @@ const (
 
 // Flag Names
 const (
-	LangFileFlag     = "lang-file"
-	IndentFlag       = "indent"
-	RomanisationFlag = "romanisation"
-	MeaningListFlag  = "meanings"
-	EtymologyFlag    = "etymology"
-	TagListFlag      = "tags"
-	ConfirmFlag      = "yes"
+	LangFileFlag     = "lang-file"    // Shorthand 'f'
+	IndentFlag       = "indent"       // Shorthand 'i'
+	IPAFlag          = "ipa"          // Shorthand 'p'
+	GroupsFlag       = "groups"       // Shorthand 'g'
+	RomanisationFlag = "romanisation" // Shorthand 'r'
+	MeaningListFlag  = "meanings"     // Shorthand 'm'
+	EtymologyFlag    = "etymology"    // Shorthand 'e'
+	TagListFlag      = "tags"         // Shorthand 't'
+	ConfirmFlag      = "yes"          // Shorthand 'c'
 )

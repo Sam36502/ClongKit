@@ -1,5 +1,9 @@
 package jsonfile
 
+import "github.com/Sam36502/ClongKit/model"
+
+var _ model.LangStorage = (*JSONFileLangStorage)(nil)
+
 type Language struct {
 	Phonology Phonology `json:"phonology"`
 	Lexicon   Lexicon   `json:"lexicon"`
@@ -10,9 +14,9 @@ type Phonology struct {
 }
 
 type Phoneme struct {
-	IPA          string `json:"ipa"`
-	Romanisation string `json:"rom"`
-	GroupID      string `json:"grp"`
+	IPA          string   `json:"ipa"`
+	Romanisation string   `json:"rom"`
+	Groups       []string `json:"grp"`
 }
 
 type Lexicon struct {

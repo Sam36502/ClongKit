@@ -1,6 +1,6 @@
 package jsonfile
 
-import "github.com/Sam36502/ClongKit/presentor/lang"
+import "github.com/Sam36502/ClongKit/presenter/lang"
 
 func (ph *Phonology) toLang() lang.Phonology {
 	lp := lang.Phonology{

@@ -16,11 +16,11 @@ import (
 var setCmd = &cobra.Command{
 	Use:   "set",
 	Short: "Adds or updates a word in your dictionary",
-	Long: `takes a romanisation and list of meanings and
+	Long: `takes a romanisation and various word attributes and
 either adds them to the dictionary or updates an existing entry.
 
 It's recommended to add as many meanings as you can think of
-to improve the chance of finding it when searching the dictionry.`,
+to improve the chance of finding it when searching later on.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		langstore, err := common.GetLang(cmd)
 		if err != nil {
