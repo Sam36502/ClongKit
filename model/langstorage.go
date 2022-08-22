@@ -9,6 +9,9 @@ type LangStorage interface {
 	GetPhoneme(rom string) (*lang.Phoneme, error)
 	GetAllPhonemes() ([]lang.Phoneme, error)
 	DelPhoneme(rom string) error
+	AddSyllableRule(patt lang.SyllableRule) error
+	GetAllSyllableRules() ([]lang.SyllableRule, error)
+	DelSyllableRule(patt lang.SyllableRule) error
 
 	// Lexicon Methods
 	SetWord(wrd lang.Word) error

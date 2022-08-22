@@ -6,6 +6,7 @@ import (
 
 type Word struct {
 	Phonemes  []Phoneme
+	Stress    int
 	Meanings  []string
 	Etymology string
 	Tags      []string

@@ -1,5 +1,5 @@
 package lang
 
 type Lexicon struct {
-	Words []Word `json:"words"`
+	Words []Word
 }

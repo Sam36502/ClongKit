@@ -1,4 +1,6 @@
 {
+    "name":"Quenya",
+    "id":"Q",
     "phonology": {
         "phonemes": [
             {

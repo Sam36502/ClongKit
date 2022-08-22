@@ -13,7 +13,8 @@ type Phoneme struct {
 }
 
 type Phonology struct {
-	Phonemes []Phoneme `json:"phonemes"`
+	Phonemes      []Phoneme
+	SyllableRules []SyllableRule
 }
 
 func (ph *Phonology) ParseWord(rom string) (*Word, error) {

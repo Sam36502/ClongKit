@@ -5,12 +5,21 @@ import "github.com/Sam36502/ClongKit/model"
 var _ model.LangStorage = (*JSONFileLangStorage)(nil)
 
 type Language struct {
+	Name      string    `json:"name"`
+	ID        string    `json:"id"`
 	Phonology Phonology `json:"phonology"`
 	Lexicon   Lexicon   `json:"lexicon"`
 }
 
 type Phonology struct {
-	Phonemes []Phoneme `json:"phonemes"`
+	Phonemes      []Phoneme      `json:"phonemes"`
+	SyllableRules []SyllableRule `json:"syllable_rules"`
+}
+
+type SyllableRule struct {
+	OnsetGroups  []string `json:"ons"`
+	NucleusGroup string   `json:"nuc"`
+	CodaGroups   []string `json:"cod"`
 }
 
 type Phoneme struct {
@@ -25,6 +34,7 @@ type Lexicon struct {
 
 type Word struct {
 	Romanisation string   `json:"rom"`
+	Stress       int      `json:"str"`
 	Etymology    string   `json:"ety"`
 	Meanings     []string `json:"mns"`
 	Tags         []string `json:"tgs"`
