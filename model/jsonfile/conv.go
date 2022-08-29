@@ -25,3 +25,11 @@ func (w *Word) toLang(ph *Phonology) (*lang.Word, error) {
 
 	return wrd, nil
 }
+
+func (sr *SyllableRule) toLang() lang.SyllableRule {
+	return lang.SyllableRule{
+		OnsetGroups:  sr.OnsetGroups,
+		NucleusGroup: sr.NucleusGroup,
+		CodaGroups:   sr.CodaGroups,
+	}
+}

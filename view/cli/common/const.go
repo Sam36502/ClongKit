@@ -2,7 +2,8 @@ package common
 
 // Command Constants
 const (
-	ListSeparator = ","
+	ListSeparator     = ","
+	SyllableSeparator = ";"
 )
 
 // Flag Names

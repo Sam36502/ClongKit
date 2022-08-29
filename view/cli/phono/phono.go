@@ -1,10 +1,10 @@
 /*
 Copyright © 2022 Samuel Pearce
-
 */
 package phono
 
 import (
+	"github.com/Sam36502/ClongKit/view/cli/phono/tactics"
 	"github.com/spf13/cobra"
 )
 
@@ -33,5 +33,6 @@ func init() {
 	PhonoCmd.AddCommand(SetCmd)
 	PhonoCmd.AddCommand(GetCmd)
 	PhonoCmd.AddCommand(DelCmd)
+	PhonoCmd.AddCommand(tactics.TacticsCmd)
 
 }

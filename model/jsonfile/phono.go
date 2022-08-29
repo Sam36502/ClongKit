@@ -49,28 +49,3 @@ func (fls *JSONFileLangStorage) DelPhoneme(rom string) error {
 	fls.lang.Phonology.Phonemes = append(fls.lang.Phonology.Phonemes[:i], fls.lang.Phonology.Phonemes[i+1:]...)
 	return nil
 }
-
-func (fls *JSONFileLangStorage) AddSyllablePattern(patt string) error {
-	for _, r := range fls.lang.Phonology.Phonotactics.Rules {
-		if strings.Compare(strings.ToLower(r), strings.ToLower(patt)) == 0 {
-			return errors.New(fmt.Sprintf("phonotactic rule '%s' already exists", patt))
-		}
-	}
-	fls.lang.Phonology.Phonotactics.Rules = append(fls.lang.Phonology.Phonotactics.Rules, patt)
-	return nil
-}
-
-func (fls *JSONFileLangStorage) GetAllSyllablePatterns() ([]string, error) {
-	return fls.lang.Phonology.Phonotactics.Rules, nil
-}
-
-func (fls *JSONFileLangStorage) DelSyllablePattern(patt string) error {
-	rules := fls.lang.Phonology.Phonotactics.Rules
-	for i, r := range rules {
-		if strings.Compare(strings.ToLower(r), strings.ToLower(patt)) == 0 {
-			fls.lang.Phonology.Phonotactics.Rules = append(rules[:i], rules[i+1:]...)
-			return nil
-		}
-	}
-	return errors.New(fmt.Sprintf("No syllable rule '%s' found", patt))
-}
