@@ -188,3 +188,8 @@ func (fls *JSONFileLangStorage) ParseWord(rom string) (*lang.Word, error) {
 	lp := fls.lang.Phonology.toLang()
 	return lp.ParseWord(rom)
 }
+
+func (fls *JSONFileLangStorage) GenerateWord(l string) (string, error) {
+	lp := fls.lang.Phonology.toLang()
+	return lp.GenerateWord(l)
+}

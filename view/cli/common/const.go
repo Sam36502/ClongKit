@@ -18,4 +18,6 @@ const (
 	EtymologyFlag    = "etymology"    // Shorthand 'e'
 	TagListFlag      = "tags"         // Shorthand 't'
 	ConfirmFlag      = "yes"          // Shorthand 'c'
+	LengthFlag       = "length"       // Shorthand 'l'
+	NumberFlag       = "number"       // Shorthand 'n'
 )

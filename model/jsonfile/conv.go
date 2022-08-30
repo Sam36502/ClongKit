@@ -4,10 +4,14 @@ import "github.com/Sam36502/ClongKit/presenter/lang"
 
 func (ph *Phonology) toLang() lang.Phonology {
 	lp := lang.Phonology{
-		Phonemes: make([]lang.Phoneme, len(ph.Phonemes)),
+		Phonemes:      make([]lang.Phoneme, len(ph.Phonemes)),
+		SyllableRules: make([]lang.SyllableRule, len(ph.SyllableRules)),
 	}
 	for i, p := range ph.Phonemes {
 		lp.Phonemes[i] = lang.Phoneme(p)
+	}
+	for i, s := range ph.SyllableRules {
+		lp.SyllableRules[i] = lang.SyllableRule(s)
 	}
 	return lp
 }

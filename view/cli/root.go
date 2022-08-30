@@ -1,6 +1,5 @@
 /*
 Copyright © 2022 Samuel Pearce
-
 */
 package cli
 
@@ -37,7 +36,7 @@ func Execute() {
 
 func init() {
 	// Global Flags
-	rootCmd.PersistentFlags().StringP(common.LangFileFlag, "l", jsonfile.DefaultLanguageFile, "The file to load your language from")
+	rootCmd.PersistentFlags().StringP(common.LangFileFlag, "f", jsonfile.DefaultLanguageFile, "The file to load your language from")
 	rootCmd.PersistentFlags().BoolP(common.IndentFlag, "i", false, "Keeps lang-file format readable")
 
 	// Add Commands

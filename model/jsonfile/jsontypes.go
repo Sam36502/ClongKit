@@ -34,7 +34,6 @@ type Lexicon struct {
 
 type Word struct {
 	Romanisation string   `json:"rom"`
-	Stress       int      `json:"str"`
 	Etymology    string   `json:"ety"`
 	Meanings     []string `json:"mns"`
 	Tags         []string `json:"tgs"`

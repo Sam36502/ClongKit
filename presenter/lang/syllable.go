@@ -43,11 +43,3 @@ func (sr *SyllableRule) Validate(phs []Phoneme) error {
 	}
 	return nil
 }
-
-/*
-type Syllable struct {
-	Onset   []Phoneme
-	Nucleus Phoneme
-	Coda    []Phoneme
-}
-*/

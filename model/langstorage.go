@@ -19,6 +19,7 @@ type LangStorage interface {
 	GetAllWords() ([]lang.Word, error)
 	SearchWord(rom, etym string, means, tags []string) ([]lang.Word, error)
 	DelWord(rom string) error
+	GenerateWord(l string) (string, error)
 
 	// Misc Methods
 	ParseWord(rom string) (*lang.Word, error)

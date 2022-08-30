@@ -1,6 +1,5 @@
 /*
 Copyright © 2022 Samuel Pearce
-
 */
 package lex
 
@@ -23,4 +22,5 @@ func init() {
 	LexCmd.AddCommand(setCmd)
 	LexCmd.AddCommand(searchCmd)
 	LexCmd.AddCommand(delCmd)
+	LexCmd.AddCommand(genCmd)
 }
