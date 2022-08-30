@@ -9,9 +9,10 @@ import (
 )
 
 func (fls *JSONFileLangStorage) SetPhoneme(ph lang.Phoneme) error {
-	gp, i, err := fls.getPhonemeIndex(ph.Romanisation)
+	_, i, err := fls.getPhonemeIndex(ph.Romanisation)
 	if err != nil {
-		fls.lang.Phonology.Phonemes = append(fls.lang.Phonology.Phonemes, Phoneme(*gp))
+		fls.lang.Phonology.Phonemes = append(fls.lang.Phonology.Phonemes, Phoneme(ph))
+		return nil
 	}
 	fls.lang.Phonology.Phonemes[i] = Phoneme(ph)
 	return nil

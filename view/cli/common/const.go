@@ -4,6 +4,7 @@ package common
 const (
 	ListSeparator     = ","
 	SyllableSeparator = ";"
+	OutputIndent      = "  "
 )
 
 // Flag Names

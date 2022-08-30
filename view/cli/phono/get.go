@@ -1,11 +1,11 @@
 /*
 Copyright © 2022 Samuel Pearce
-
 */
 package phono
 
 import (
 	"fmt"
+	"sort"
 
 	"github.com/Sam36502/ClongKit/presenter/lang"
 	"github.com/Sam36502/ClongKit/view/cli/common"
@@ -32,15 +32,21 @@ It can also be filtered with some basic options.`,
 		}
 
 		grps := map[string][]lang.Phoneme{}
+		grpInds := []string{}
 		for _, p := range phs {
 			for _, g := range p.Groups {
-				grps[g] = append(grps[g], p)
+				gr, e := grps[g]
+				grps[g] = append(gr, p)
+				if !e {
+					grpInds = append(grpInds, g)
+				}
 			}
 		}
-		for g, ph := range grps {
+		sort.Strings(grpInds)
+		for _, g := range grpInds {
 			fmt.Printf("Group '%s'\n", g)
-			for _, p := range ph {
-				fmt.Printf("<%s> /%s/; ", p.Romanisation, p.IPA)
+			for _, p := range grps[g] {
+				fmt.Printf("%s<%s> /%s/; ", common.OutputIndent, p.Romanisation, p.IPA)
 			}
 			fmt.Print("\n")
 		}

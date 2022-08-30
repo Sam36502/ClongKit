@@ -1,6 +1,5 @@
 /*
 Copyright © 2022 Samuel Pearce
-
 */
 package phono
 
@@ -8,6 +7,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/Sam36502/ClongKit/presenter/lang"
 	"github.com/Sam36502/ClongKit/view/cli/common"
 	"github.com/spf13/cobra"
 )
@@ -29,10 +29,10 @@ your phonology, if it doesn't already exist.`,
 			fmt.Println("Exactly one argument is required: phoneme romanisation")
 			return
 		}
-		ph, err := langstore.GetPhoneme(args[0])
-		if err != nil {
-			fmt.Printf("Couldn't find any phoneme with the romanisation '%s'\n", args[0])
-			return
+		ph := &lang.Phoneme{
+			Romanisation: args[0],
+			IPA:          "",
+			Groups:       []string{},
 		}
 
 		ipaFlg := cmd.Flag(common.IPAFlag)

@@ -32,7 +32,7 @@ var TacticsCmd = &cobra.Command{
 		}
 
 		for _, p := range patterns {
-			fmt.Printf("    %s\n", p.String())
+			fmt.Printf("%s%s\n", common.OutputIndent, p.String())
 		}
 	},
 }
