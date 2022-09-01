@@ -54,8 +54,7 @@ func (l *Phonology) GenerateWord(lrange string) (string, error) {
 	var leng int
 	min, max, err := parseRangeStr(lrange)
 	if err == nil && min < max {
-		fmt.Println("Genning word")
-		leng = rand.Intn(max-min) + min
+		leng = rand.Intn(max+1-min) + min
 	} else {
 		num, err := strconv.ParseInt(lrange, 10, 32)
 		if err == nil {

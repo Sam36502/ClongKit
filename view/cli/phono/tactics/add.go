@@ -29,11 +29,38 @@ var AddCmd = &cobra.Command{
 		}
 
 		// Parse syllable rule
+		rule := lang.SyllableRule{}
 		arr := strings.Split(args[0], common.SyllableSeparator)
-		rule := lang.SyllableRule{
-			OnsetGroups:  strings.Split(arr[0], common.ListSeparator),
-			NucleusGroup: arr[1],
-			CodaGroups:   strings.Split(arr[2], common.ListSeparator),
+
+		// Onset
+		if len(arr) > 0 {
+			gs := strings.Split(arr[0], common.ListSeparator)
+			if len(gs) == 1 && gs[0] == "" {
+				rule.OnsetGroups = []string{}
+			} else {
+				rule.OnsetGroups = gs
+			}
+		} else {
+			rule.OnsetGroups = []string{}
+		}
+
+		// Nucleus
+		if len(arr) > 1 {
+			rule.NucleusGroup = arr[1]
+		} else {
+			rule.NucleusGroup = ""
+		}
+
+		// Coda
+		if len(arr) > 2 {
+			gs := strings.Split(arr[2], common.ListSeparator)
+			if len(gs) == 1 && gs[0] == "" {
+				rule.CodaGroups = []string{}
+			} else {
+				rule.CodaGroups = gs
+			}
+		} else {
+			rule.CodaGroups = []string{}
 		}
 
 		phs, err := langstore.GetAllPhonemes()
