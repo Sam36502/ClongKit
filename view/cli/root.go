@@ -40,6 +40,7 @@ func init() {
 	rootCmd.PersistentFlags().BoolP(common.IndentFlag, "i", false, "Keeps lang-file format readable")
 
 	// Add Commands
+	rootCmd.AddCommand(SetCmd)
 	rootCmd.AddCommand(lex.LexCmd)
 	rootCmd.AddCommand(phono.PhonoCmd)
 }

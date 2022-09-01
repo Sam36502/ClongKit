@@ -2,7 +2,10 @@ package jsonfile
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 	"io/ioutil"
+	"os"
 )
 
 const (
@@ -28,6 +31,10 @@ func NewFileLangStorage(filename string, indentedFormatting bool) (*JSONFileLang
 	}
 	fls.lang = *l
 	return &fls, nil
+}
+
+func (fls *JSONFileLangStorage) SetFilename(fn string) {
+	fls.filename = fn
 }
 
 func (fls *JSONFileLangStorage) Close() error {
@@ -77,5 +84,26 @@ func (fls *JSONFileLangStorage) saveLanguage() error {
 		return err
 	}
 
+	return nil
+}
+
+func (fls *JSONFileLangStorage) CreateLanguage(name, ID string) error {
+
+	// Check file already exists
+	_, err := os.Stat(fls.filename)
+	if !os.IsNotExist(err) {
+		return errors.New(fmt.Sprintf("File '%s' already exists", fls.filename))
+	}
+
+	// Otherwise create new one
+	fls.lang = Language{
+		Name: name,
+		ID:   ID,
+	}
+
+	err = fls.saveLanguage()
+	if err != nil {
+		return err
+	}
 	return nil
 }

@@ -17,8 +17,21 @@ func GetLang(cbr *cobra.Command) (model.LangStorage, error) {
 	indentFlag := cbr.Flag(IndentFlag)
 	store, err := jsonfile.NewFileLangStorage(langFileFlag.Value.String(), indentFlag.Changed)
 	if err != nil {
-		msg := fmt.Sprintf("Failed to load language file'%s': %s\n", langFileFlag.Value.String(), err.Error())
-		return nil, errors.New(msg)
+		// Try to create new file
+		store := &jsonfile.JSONFileLangStorage{}
+		store.SetFilename(langFileFlag.Value.String())
+		err := store.Close()
+		if err != nil {
+			msg := fmt.Sprintf("Failed to create language file '%s': %s\n", langFileFlag.Value.String(), err.Error())
+			return nil, errors.New(msg)
+		}
+
+		store, err = jsonfile.NewFileLangStorage(langFileFlag.Value.String(), indentFlag.Changed)
+		if err != nil {
+			msg := fmt.Sprintf("Failed to load language file '%s': %s\n", langFileFlag.Value.String(), err.Error())
+			return nil, errors.New(msg)
+		}
+		return store, nil
 	}
 	return store, nil
 }

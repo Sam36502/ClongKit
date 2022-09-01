@@ -4,6 +4,12 @@ import "github.com/Sam36502/ClongKit/presenter/lang"
 
 type LangStorage interface {
 
+	// Language Methods
+	GetName() (string, error)
+	GetID() (string, error)
+	SetName(string) error
+	SetID(string) error
+
 	// Phonology Methods
 	SetPhoneme(ph lang.Phoneme) error
 	GetPhoneme(rom string) (*lang.Phoneme, error)
@@ -22,6 +28,7 @@ type LangStorage interface {
 	GenerateWord(l string) (string, error)
 
 	// Misc Methods
+	CreateLanguage(name, ID string) error
 	ParseWord(rom string) (*lang.Word, error)
 	Close() error
 }

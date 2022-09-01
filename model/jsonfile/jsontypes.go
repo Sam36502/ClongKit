@@ -38,3 +38,21 @@ type Word struct {
 	Meanings     []string `json:"mns"`
 	Tags         []string `json:"tgs"`
 }
+
+func (fls *JSONFileLangStorage) GetName() (string, error) {
+	return fls.lang.Name, nil
+}
+
+func (fls *JSONFileLangStorage) GetID() (string, error) {
+	return fls.lang.ID, nil
+}
+
+func (fls *JSONFileLangStorage) SetName(name string) error {
+	fls.lang.Name = name
+	return nil
+}
+
+func (fls *JSONFileLangStorage) SetID(ID string) error {
+	fls.lang.ID = ID
+	return nil
+}
