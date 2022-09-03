@@ -73,7 +73,7 @@ func (fls *JSONFileLangStorage) SearchWord(rom, etym string, means, tags []strin
 	if rom != "" {
 		i := 0
 		for _, w := range words {
-			if fuzzy.Match(rom, w.Romanisation) {
+			if fuzzy.Match(strings.ToLower(rom), strings.ToLower(w.Romanisation)) {
 				words[i] = w
 				i++
 			}
@@ -91,7 +91,7 @@ func (fls *JSONFileLangStorage) SearchWord(rom, etym string, means, tags []strin
 	if etym != "" {
 		i := 0
 		for _, w := range words {
-			if fuzzy.Match(etym, w.Etymology) {
+			if fuzzy.Match(strings.ToLower(etym), strings.ToLower(w.Etymology)) {
 				words[i] = w
 				i++
 			}
@@ -111,7 +111,7 @@ func (fls *JSONFileLangStorage) SearchWord(rom, etym string, means, tags []strin
 			for _, wm := range w.Meanings {
 				matched := false
 				for _, im := range means {
-					if fuzzy.Match(im, wm) {
+					if fuzzy.Match(strings.ToLower(im), strings.ToLower(wm)) {
 						words[i] = w
 						i++
 						matched = true
