@@ -40,12 +40,17 @@ You can change the number of words and range of word length with -n and -l.`,
 
 		// Generate Words
 		for i := 0; i < n; i++ {
-			str, err := langstore.GenerateWord(l)
+			phono, err := langstore.GetPhonology()
+			if err != nil {
+				fmt.Println("Failed to access phonology:", err)
+				return
+			}
+			str, err := phono.GenerateWord(l)
 			if err != nil {
 				fmt.Println("Failed to generate word:", err)
 				return
 			}
-			wrd, err := langstore.ParseWord(str)
+			wrd, err := phono.ParseWord(str)
 			if err != nil {
 				fmt.Println("Failed to parse word:", err)
 				return

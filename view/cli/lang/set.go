@@ -1,13 +1,13 @@
 /*
 Copyright © 2022 Samuel Pearce
 */
-package 
+package lang
 
 import (
 	"fmt"
 	"strings"
 
-	"github.com/Sam36502/ClongKit/presenter/lang"
+	"github.com/Sam36502/ClongKit/lang"
 	"github.com/Sam36502/ClongKit/view/cli/common"
 	"github.com/spf13/cobra"
 )

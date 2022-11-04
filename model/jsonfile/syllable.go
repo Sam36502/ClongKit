@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Sam36502/ClongKit/presenter/lang"
+	"github.com/Sam36502/ClongKit/lang"
 )
 
 func (sr *SyllableRule) String() string {

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Sam36502/ClongKit/presenter/lang"
+	"github.com/Sam36502/ClongKit/lang"
 )
 
 func (fls *JSONFileLangStorage) SetPhoneme(ph lang.Phoneme) error {
@@ -39,6 +39,10 @@ func (fls *JSONFileLangStorage) GetAllPhonemes() ([]lang.Phoneme, error) {
 		phs[i] = lang.Phoneme(p)
 	}
 	return phs, nil
+}
+
+func (fls *JSONFileLangStorage) GetPhonology() (lang.Phonology, error) {
+	return fls.lang.Phonology.toLang(), nil
 }
 
 func (fls *JSONFileLangStorage) DelPhoneme(rom string) error {

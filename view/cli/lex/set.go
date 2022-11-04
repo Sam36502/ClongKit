@@ -34,7 +34,12 @@ to improve the chance of finding it when searching later on.`,
 		rom := args[0]
 
 		// Parse romanisation
-		word, err := langstore.ParseWord(rom)
+		phono, err := langstore.GetPhonology()
+		if err != nil {
+			fmt.Println("Failed to access phonology:", err)
+			return
+		}
+		word, err := phono.ParseWord(rom)
 		if err != nil || word == nil {
 			fmt.Println("Failed to parse the romanisation, are all the letters registered in the phonology?")
 			return
